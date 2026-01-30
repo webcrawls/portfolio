@@ -157,7 +157,7 @@
 </script>
 
 <header>
-    <h1>Binary Visualization and Boolean Algebra Tool</h1>
+    <h1>Logical Operations Visualizer</h1>
 </header>
 
 <article>
@@ -200,14 +200,16 @@
 </article>
 <hr />
 
-<article>
-    <input type="range" max="16" min="1" bind:value={baseInput} />
+<article class="calculator">
+    <!-- <input type="range" max="16" min="1" bind:value={baseInput} /> -->
     <div class="input-group">
         <BinaryInput {base} bind:value={primary} />
         <div class="input-text">{operation}</div>
-        <BinaryInput {base} bind:value={secondary} />
+        {#if operation !== "not"} 
+            <BinaryInput {base} disabled={operation === "not"} bind:value={secondary} />
+        {/if}
         <div class="input-text">equals</div>
-        <BinaryInput {base} bind:value={result}/>
+        <BinaryInput {base} bind:value={result} readonly={true} />
     </div>
 </article>
 
@@ -216,23 +218,36 @@
     language (JavaScript).
     <br />And then making it look cool.
     <br />From Module 1 of my Computer Math Fundementals.
-    <br />Hopefully will be able to implement Addition & Subtraction soon
+    <br />Hopefully will be able to implement Addition & Subtraction soon. I guess, how hard is it to implement the by-hand method(s) we learned?
     <br />And then some way to encode a boolean expression and run the k-map
-    stuff would be cool.
-    <br />I'm sure someones come up with the code algorithm to do simplification
-    to some degree..
+    stuff would be cool. But i don't know how difficult that is, i guess you'd have to make a parser?
 </blockquote>
 
 <style>
     :global(*) {
         box-sizing: border-box;
     }
-    
-    .input-text {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+
+    :global(:root) {
+        --calculator-bg: rgb(70, 70, 70);
+        --calculator-outline: #999999;
+        --calculator-input-bg: #bcbcbc;
+
+        --calculator-text-outer: rgb(218, 218, 218);
+        --calculator-text-input: black;
+        --calculator-text-input-alt: gray;
     }
+
+    .calculator {
+        background-color: var(--calculator-bg);
+        width: min-content;
+        padding: 4rem;
+    }
+
+    .input-text {
+        color: var(--calculator-text-outer)
+    }
+
     #binary-input {
         display: flex;
         flex-direction: row;
@@ -243,6 +258,12 @@
             font-size: 12px;
             color: rgb(48, 48, 48);
         }
+    }
+
+    .input-text {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     div.input-group {

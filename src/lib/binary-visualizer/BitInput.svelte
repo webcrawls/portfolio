@@ -17,20 +17,23 @@
         height: var(--scale);
 
         position: relative;
+
+        background-color: var(--calculator-input-bg);
     }
 
     input {
         width: var(--scale);
         height: var(--scale);
+        background-color: transparent;
         padding: 0;
         border: none;
+        outline: none;
         color: transparent;
         position: absolute;
     }
 
     .bit-cover {
-        border: 2px solid rgb(255, 255, 255);
-        z-index: 1;
+                z-index: 1;
         pointer-events: none;
         position: relative;
         width: 100%;
