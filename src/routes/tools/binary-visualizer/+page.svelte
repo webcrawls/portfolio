@@ -94,10 +94,7 @@
         if (primary === null) return;
 
         const operations = {
-            not: not,
-            and: and,
-            or: or,
-            xor,
+            not, and, or, xor,
         };
 
         console.log(operation);
@@ -105,6 +102,7 @@
         return operations[operation](primary, secondary) || null;
     };
 
+    // State & input/front-end logic
     const parseInput = (input) => {
         const isNumeric = (input) => {
             // Regards to guy on StackOverflow: https://stackoverflow.com/a/175787
@@ -132,8 +130,6 @@
         return result;
     };
 
-    /* Im trying to do this all off memory or what ive leasrned so far, no googling rn.
-    I may at some point 1/30/26 449pm */
     let primaryInput: string = $state("1111");
     let secondaryInput: string = $state("1111");
     let baseInput: string = $state("8");
@@ -161,7 +157,6 @@
 </header>
 
 <article>
-    <!-- I guess, to start, put some binary numbers down -->
     <section id="binary-input">
         <div class="binary">
             <input
@@ -182,7 +177,6 @@
         </div>
     </section>
 
-    <!-- And an operation selector-->
     <select bind:value={operation}>
         <option value="not">NOT</option>
         <option value="and">AND</option>
@@ -194,9 +188,7 @@
         <option disabled="true">Subtraction</option>
     </select>
 
-    <!-- woo  ? first try? nvm-->
     <input type="text" readonly="true" value={result} />
-    <!-- <p>{(result ?? [0,0,0,0,0,0,0,0]).map(value => '[' + value.join(', ') + ']')}</p> -->
 </article>
 <hr />
 
@@ -232,9 +224,11 @@
         --calculator-bg: rgb(70, 70, 70);
         --calculator-outline: #999999;
         --calculator-input-bg: #bcbcbc;
+        --calculator-input-off-bg: #bcbcbc;
 
         --calculator-text-outer: rgb(218, 218, 218);
         --calculator-text-input: black;
+        --calculator-text-input-off: black;
         --calculator-text-input-alt: gray;
     }
 

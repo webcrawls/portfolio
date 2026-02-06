@@ -2,7 +2,7 @@
     let { index, value = $bindable(), onchange } = $props();
 </script>
 
-<div class="bit-input">
+<div class="bit-input" class:off={value === 1}>
     <input type="text" bind:value maxlength="1" {onchange} />
     <div class="bit-cover">
         <p class='bit-index'>{index}</p>
@@ -11,6 +11,10 @@
 </div>
 
 <style>
+    .off {
+        background-color: var(--calculator-input-off-bg);
+
+    }
     .bit-input {
         --scale: 64px;
         width: var(--scale);
@@ -44,17 +48,15 @@
             padding: 0;
             width: 16px;
             height: 16px;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-margin: auto;
-
-width: min-content;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: min-content;
         }
 
         & .bit-index {
-            
             width: 16px;
             height: 16px;
             font-size: 12px;
@@ -62,11 +64,8 @@ width: min-content;
             position: absolute;
             padding: 0;
             margin: 0;
-
-top: 4px;
-left: 4px;
-
-
+            top: 4px;
+            left: 4px;
             width: min-content;
         }
     }
